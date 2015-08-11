@@ -8,18 +8,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-
+#include "const.h"
 #include "php_phpmonitor.h"
 
-/**
- * **********************
- * GLOBAL MACRO CONSTANTS
- * **********************
- */
-
-/* phpmonitor version                           */
-#define PHPMONITOR_VERSION       "0.0.1"
-#define PHPMONITOR_NAME          "phpmonitor"
 
 //module entry
 zend_module_entry phpmonitor_module_entry = {
