@@ -12,17 +12,30 @@
 #include "php_phpmonitor.h"
 
 
+
+
+/**
+ * *********************
+ * PHP EXTENSION GLOBALS
+ * *********************
+ */
+/* List of functions implemented/exposed by phpmonitor */
+zend_function_entry phpmonitor_functions[] = {
+  PHP_FE(phpmonitor_test, NULL)
+  PHP_FE_END
+};
+
 //module entry
 zend_module_entry phpmonitor_module_entry = {
 #if ZEND_MODULE_API_NO >= 20010901
      STANDARD_MODULE_HEADER,
 #endif
     PHPMONITOR_NAME, 
-    NULL, /* Functions */
+    phpmonitor_functions, /* Functions */
     PHP_MINIT(phpmonitor),               /* Module init callback */
-  PHP_MSHUTDOWN(phpmonitor),           /* Module shutdown callback */
-  PHP_RINIT(phpmonitor),               /* Request init callback */
-  PHP_RSHUTDOWN(phpmonitor),           /* Request shutdown callback */
+    PHP_MSHUTDOWN(phpmonitor),           /* Module shutdown callback */
+    PHP_RINIT(phpmonitor),               /* Request init callback */
+    PHP_RSHUTDOWN(phpmonitor),           /* Request shutdown callback */
 
     NULL, /* MINFO */
 #if ZEND_MODULE_API_NO >= 20010901
@@ -68,13 +81,13 @@ PHP_MSHUTDOWN_FUNCTION(phpmonitor)
     return SUCCESS;
 }
  
-/*
+
 PHP_FUNCTION(phpmonitor_test)
 {
     php_printf("%d&lt;br /&gt;",time_of_minit);
     php_printf("%d&lt;br /&gt;",time_of_rinit);
     return;
 }
-*/
+
 
 
