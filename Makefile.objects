@@ -1,0 +1,8 @@
+phpmonitor.lo: /mh/phphook/phpmonitor/phpmonitor.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/mh/phphook/phpmonitor $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /mh/phphook/phpmonitor/phpmonitor.c -o phpmonitor.lo 
+$(phplibdir)/phpmonitor.la: ./phpmonitor.la
+	$(LIBTOOL) --mode=install cp ./phpmonitor.la $(phplibdir)
+
+./phpmonitor.la: $(shared_objects_phpmonitor) $(PHPMONITOR_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phpmonitor) $(PHPMONITOR_SHARED_LIBADD)
+
